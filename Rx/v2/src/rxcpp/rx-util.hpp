@@ -569,8 +569,8 @@ template <class T>
 class maybe
 {
     bool is_set;
-    typename std::aligned_storage<sizeof(T), std::alignment_of<T>::value>::type
-        storage;
+    alignas(T) std::byte
+        storage[sizeof(T)];
 public:
     maybe()
     : is_set(false)
